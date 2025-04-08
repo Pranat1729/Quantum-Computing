@@ -390,48 +390,18 @@ class ComplexMatrixOp:
         def decision(qubits):
             n = int(input("How many total gates do you want to apply?>> "))
             for i in range(n):
-                x = input(
-                    "which Gate do you want to apply? Hadamard(H)(1-qubit version), Controlled Not(CNOT)(2-qubit), Phase Gate(phase)(1-qubit)>> "
-                )
+                x = input("which Gate do you want to apply? Hadamard(H)(1-qubit version), Controlled Not(CNOT)(2-qubit), Phase Gate(phase)(1-qubit)>> ")
                 if x == "H":
-                    y = list(
-                        map(
-                            int,
-                            input(
-                                "Which qubits do you want to apply this to? E.g, 1 and 1,2 for both, etc.>> "
-                            ).split(","),
-                        )
-                    )
+                    y = list(map(int,input("Which qubits do you want to apply this to? E.g, 1 and 1,2 for both, etc.>> ").split(",")))
                     for i in range(len(y)):
                         a = H_gate(np.array(qubits[y[i] - 1]).reshape(-1, 1))
                         qubits[y[i] - 1] = a
                 elif x == "CNOT":
-                    y = list(
-                        map(
-                            int,
-                            input(
-                                "Which qubits do you want to apply this to? E.g, 1,2(2 being the target qubit. eg: control qubit, target qubit) etc.>> "
-                            ).split(","),
-                        )
-                    )
-                    b = ComplexMatrixOp.mTP(
-                        np.array(qubits[y[0] - 1]).reshape(-1, 1),
-                        np.array(qubits[y[1] - 1]).reshape(-1, 1),
-                        2,
-                        1,
-                        2,
-                        1,
-                    )
+                    y = list( map(int,input("Which qubits do you want to apply this to? E.g, 1,2(2 being the target qubit. eg: control qubit, target qubit) etc.>> ").split(","),))
+                    b = ComplexMatrixOp.mTP(np.array(qubits[y[0] - 1]).reshape(-1, 1),np.array(qubits[y[1] - 1]).reshape(-1, 1),2,1,2,1,)
                     qubits[y[1] - 1] = CNOT_gate(np.array(b).reshape(-1, 1))
                 elif x == "phase":
-                    y = list(
-                        map(
-                            int,
-                            input(
-                                "Which qubits do you want to apply this to? E.g, 1 and 1,2 for both, etc.>> "
-                            ).split(","),
-                        )
-                    )
+                    y = list(map(int,input("Which qubits do you want to apply this to? E.g, 1 and 1,2 for both, etc.>> ").split(",")))
                     for i in range(len(y)):
                         theta = int(input("Enter the phase factor in degrees>> "))
                         a = phase_gate(np.array(qubits[y[i] - 1]).reshape(-1, 1), theta)
