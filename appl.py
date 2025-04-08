@@ -1,5 +1,5 @@
 import streamlit as st
-from backend import QC # Assuming QC.py is in the same folder
+import QC 
 
 st.set_page_config(page_title="Quantum Computing Library", layout="centered")
 st.title("🧠 Quantum Computing Operations")
